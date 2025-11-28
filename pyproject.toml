@@ -1,0 +1,236 @@
+[build-system]
+requires=["setuptools>=62.6"]
+build-backend="setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include=['mava*', 'inference_configurations*']
+
+[project]
+name="rl-inference-stratgies"
+authors=[{name="InstaDeep"}]
+dynamic=["version"]
+license={file="LICENSE"}
+description="Distributed Multi-Agent Reinforcement Learning in JAX."
+readme ="README.md"
+requires-python = ">=3.10,<3.13"
+keywords=["multi-agent", "reinforcement learning", "python", "jax", "inference"]
+classifiers=[
+    "Environment :: Console",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "License :: OSI Approved :: Apache Software License",
+]
+
+dependencies = [
+    "absl-py==2.2.2",
+    "antlr4-python3-runtime==4.9.3",
+    "arch==7.2.0",
+    "arrow==1.3.0",
+    "attrs==25.3.0",
+    "boto3==1.37.3",
+    "botocore==1.37.3",
+    "bravado==11.1.0",
+    "bravado-core==6.1.1",
+    "brax==0.10.3",
+    "cachetools==5.5.2",
+    "certifi==2025.4.26",
+    "charset-normalizer==3.4.2",
+    "chex==0.1.89",
+    "click==8.2.0",
+    "cloudpickle==3.1.1",
+    "colorama==0.4.6",
+    "colorcet==3.1.0",
+    "contourpy==1.3.2",
+    "cycler==0.12.1",
+    "decorator==5.2.1",
+    "distrax==0.1.5",
+    "dm-env==1.6",
+    "dm-tree==0.1.8",
+    "einops==0.8.0",
+    "etils==1.12.2",
+    "farama-notifications==0.0.4",
+    "filelock==3.18.0",
+    "flashbax==0.1.3",
+    "flask==2.2.5",
+    "flask-cors==6.0.0",
+    "flax==0.10.6",
+    "fonttools==4.58.0",
+    "fqdn==1.5.1",
+    "fsspec==2025.3.2",
+    "future==1.0.0",
+    "gast==0.6.0",
+    "gigastep @ git+https://github.com/mlech26l/gigastep@6288d650b1697ae6b201dcc7db9cbe0e07de37a2",
+    "gitdb==4.0.12",
+    "gitpython==3.1.44",
+    "glfw==2.9.0",
+    "google-api-core==2.24.2",
+    "google-api-python-client==2.169.0",
+    "google-auth==2.40.1",
+    "google-auth-httplib2==0.2.0",
+    "googleapis-common-protos==1.70.0",
+    "grpcio==1.71.0",
+    "gym==0.26.2",
+    "gym-notices==0.0.8",
+    "gymnasium==1.1.1",
+    "gymnax==0.0.8",
+    "httplib2==0.22.0",
+    "huggingface-hub==0.31.4",
+    "humanize==4.12.3",
+    "hydra-core==1.3.2",
+    "id-marl-eval @ git+https://github.com/instadeepai/marl-eval@5675ad67e8eeb7450bbbe827883849a938b27d80",
+    "idna==3.10",
+    "importlib-metadata==8.7.0",
+    "importlib-resources==6.5.2",
+    "isoduration==20.11.0",
+    "itsdangerous==2.2.0",
+    "jax==0.5.1",
+    "jaxlib==0.5.1",
+    "jaxmarl @ git+https://github.com/RuanJohn/JaxMARL@93c462ea356c584931886034d25454d6a6c7df03",
+    "jaxopt==0.8.5",
+    "jinja2==3.0.3",
+    "jmespath==1.0.1",
+    "joblib==1.5.0",
+    "jsonpointer==3.0.0",
+    "jsonref==1.1.0",
+    "jsonschema==4.23.0",
+    "jsonschema-specifications==2025.4.1",
+    "jumanji @ git+https://github.com/sash-a/jumanji@ccd50e6712186e3abc72a7fe5b175ade3eed4d7b",
+    "kiwisolver==1.4.8",
+    "lbforaging==2.0.0",
+    "markdown-it-py==3.0.0",
+    "markupsafe==3.0.2",
+    "matplotlib==3.7.5",
+    "matrax @ git+https://github.com/instadeepai/matrax@4c5d8aa97214848ea659274f16c48918c13e845b",
+    "mdurl==0.1.2",
+    "ml-collections==1.1.0",
+    "ml-dtypes==0.5.1",
+    "monotonic==1.6",
+    "msgpack==1.1.0",
+    "mujoco==3.1.3",
+    "mujoco-mjx==3.1.3",
+    "neptune==1.14.0",
+    "nest-asyncio==1.6.0",
+    "networkx==3.4.2",
+    "numpy==1.26.4",
+    "oauthlib==3.2.2",
+    "omegaconf==2.3.0",
+    "opt-einsum==3.4.0",
+    "optax==0.2.4",
+    "orbax-checkpoint==0.11.6",
+    "packaging==25.0",
+    "pandas==2.2.3",
+    "patsy==1.0.1",
+    "pillow==11.2.1",
+    "proto-plus==1.26.1",
+    "protobuf==3.20.3",
+    "psutil==7.0.0",
+    "pyasn1==0.6.1",
+    "pyasn1-modules==0.4.2",
+    "pygame==2.6.1",
+    "pyglet==1.5.31",
+    "pygments==2.19.1",
+    "pyjwt==2.10.1",
+    "pyopengl==3.1.9",
+    "pyparsing==3.2.3",
+    "python-dateutil==2.9.0.post0",
+    "pytinyrenderer==0.0.14",
+    "pytz==2025.2",
+    "pyyaml==6.0.2",
+    "referencing==0.36.2",
+    "requests==2.32.3",
+    "requests-oauthlib==2.0.0",
+    "rfc3339-validator==0.1.4",
+    "rfc3986-validator==0.1.1",
+    "rich==14.0.0",
+    "rliable @ git+https://github.com/google-research/rliable@3ccd9f4dea577a04d3d2b557f259aac08badbd81",
+    "rpds-py==0.25.0",
+    "rsa==4.9.1",
+    "rtree==1.0.0",
+    "rware==2.0.0",
+    "s3transfer==0.11.3",
+    "safetensors==0.5.3",
+    "scikit-learn==1.6.1",
+    "scipy==1.12.0",
+    "seaborn==0.13.2",
+    "setuptools==80.8.0",
+    "simplejson==3.20.1",
+    "six==1.17.0",
+    "smaclite @ git+https://github.com/uoe-agents/smaclite.git@0d6abbea1334011984ae4704a0ef7a33c36057d6",
+    "smmap==5.0.2",
+    "statsmodels==0.14.4",
+    "swagger-spec-validator==3.0.4",
+    "tensorboard-logger==0.1.0",
+    "tensorboardx==2.6.2.2",
+    "tensorflow-probability==0.25.0",
+    "tensorstore==0.1.74",
+    "threadpoolctl==3.6.0",
+    "toolz==1.0.0",
+    "tqdm==4.67.1",
+    "treescope==0.1.9",
+    "trimesh==4.6.10",
+    "type-enforced==1.10.2",
+    "types-python-dateutil==2.9.0.20250516",
+    "typing-extensions==4.13.2",
+    "tzdata==2025.2",
+    "uri-template==1.3.0",
+    "uritemplate==4.1.1",
+    "urllib3==2.4.0",
+    "webcolors==24.11.1",
+    "websocket-client==1.8.0",
+    "werkzeug==3.1.3",
+    "zipp==3.21.0",
+]
+
+[project.optional-dependencies]
+cuda12 = ["jax[cuda12]==0.5.1"]
+
+[dependency-groups]
+dev = ["mypy", "pre-commit", "pytest"]
+
+[tool.setuptools.dynamic]
+version={attr="mava.__version__"}
+
+[tool.mypy]
+python_version="3.10"
+warn_redundant_casts=true
+disallow_untyped_defs=true
+strict_equality=true
+follow_imports="skip"
+ignore_missing_imports=true
+
+[tool.ruff]
+line-length=100
+exclude = [
+    ".venv",
+    "venv",
+    ".git",
+    "__pycache__",
+    ".mypy_cache",
+    ".pytest_cache",
+    ".ruff_cache",
+    "*.egg-info",
+    "base_policy_hyperparameters",
+    "all_checkpoints",
+]
+
+[tool.ruff.lint]
+select=["A", "B", "E", "F",  "I", "N", "W", "RUF", "ANN"]
+ignore=[
+    "E731",  # Allow lambdas to be assigned to variables.
+    "ANN101",  # no need to type self
+    "ANN102",  # no need to type cls
+    "ANN204",  # no need for return type for special methods
+    "ANN401",  # can use Any type
+    "RUF005",
+]
+
+[tool.ruff.lint.pep8-naming]
+ignore-names = ["?"]

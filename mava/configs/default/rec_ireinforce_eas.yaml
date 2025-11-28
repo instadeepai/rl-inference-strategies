@@ -1,0 +1,39 @@
+defaults:
+  - logger: logger
+  - arch: anakin
+  - system: reinforce/rec_ireinforce
+  - network: rnn  # [rnn, rcnn]
+  - env: vector-connector  # [cleaner, connector, gigastep, lbf, mabrax, matrax, rware, smax]
+  - _self_
+
+hydra:
+  searchpath:
+    - file://mava/configs
+
+inference:
+  budget: 2560 # number of total steps
+  n_attempts: 128 # number of attempts on each step
+  n_envs_per_batch: 32 # number of envs per batch
+  max_trajectory_size: 64 # batch size for updating the network - number of trajectory for each problem
+  num_params_updates: 1 # number of params to update per batch
+  n_envs: 32 # number of problems
+  env_seed: 0
+  evaluation_greedy: False
+  time_constraint: 200
+  entropy_coef: 0.01
+  il_coef: 0.1
+
+logger:
+  use_neptune: False
+  kwargs:
+    neptune_tag: ["to-delete","online-ft","seeds_"]
+  checkpointing:
+    load_model: True
+    download_model: True
+    download_args:
+      neptune_run_name: 'MAR-4175'
+    load_args:
+      checkpoint_uid: "paper-baselines"
+
+system:
+  rollout_length: 100

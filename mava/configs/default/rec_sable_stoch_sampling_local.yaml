@@ -1,0 +1,42 @@
+defaults:
+  - logger: logger
+  - arch: anakin
+  - system: sable/rec_sable
+  - network: rec_retention
+  - env: vector-connector  # [cleaner, connector, gigastep, lbf, rware, smax, mabrax, mpe]
+  - _self_
+
+hydra:
+  searchpath:
+    - file://mava/configs
+
+inference:
+  budget: 10
+  n_attempts: 2
+  n_envs: 32
+  env_seed: 0
+  evaluation_greedy: False
+  time_constraint: 3600
+
+logger:
+  use_neptune: False
+  kwargs:
+    neptune_tag: ["sable", "stochastic", "evaluation"]
+  checkpointing:
+    load_model: False
+    download_model: False
+    download_args:
+      neptune_run_name: "MAR-1106"
+    load_args:
+      checkpoint_uid: "20250116183625"
+
+network:
+  net_config:
+    embed_dim: 128
+    n_head: 4
+  memory_config:
+    timestep_chunk_size: ~ #2944 #75
+    decay_scaling_factor: 1
+
+system:
+  rollout_length: 225

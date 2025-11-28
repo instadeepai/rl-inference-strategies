@@ -1,0 +1,19 @@
+defaults:
+  - logger: logger
+  - arch: anakin
+  - system: reinforce/rec_ireinforce
+  - network: rnn  # [rnn, rcnn]
+  - env: vector-connector  # [cleaner, connector, gigastep, lbf, mabrax, matrax, rware, smax]
+  - _self_
+
+hydra:
+  searchpath:
+    - file://mava/configs
+
+inference:
+  budget: 6400
+  n_attempts: 32
+  n_envs: 128
+  env_seed: 0
+  evaluation_greedy: True
+  time_constraint: 3600

@@ -1,0 +1,28 @@
+# --- Anakin config ---
+architecture_name: anakin
+
+# --- Training ---
+num_envs: 64  # Number of vectorised environments per device.
+num_latents_per_env: 64 # Number of latents per training env.
+eval_diff_latent_num: False # Should we use a different number of latents vectors per eval env
+  # than we do per training env.
+eval_num_latents_per_env: 64 # Number of latent vectors per eval env.
+compass_latent_dim: 16 # Dimension of the latent space
+latent_amplifier: 1 # Scalar that multiplies with values in latent vectors.
+latent_sampling_same: False # Whether we want to sample the same set of latents for each env or not
+padding_with_random_weights: True # Whether padding the weights with zero or random values
+weights_noise: 0.01 # Noise magnitude to control the variance of weights
+grad_accumulation_steps: 1 # Accumulate gradients over batches of latent vectors.
+
+# --- Evaluation ---
+evaluation_greedy: False # Evaluate the policy greedily. If True the policy will select
+  # an action which corresponds to the greatest logit. If false, the policy will sample
+  # from the logits.
+num_evaluation: 156 # Number of evenly spaced evaluations to perform during training.
+num_eval_episodes: 32 # Number of episodes to evaluate per evaluation.
+num_absolute_metric_eval_episodes: 320  # Number of episodes to evaluate the absolute metric (the final evaluation).
+absolute_metric: False # Whether the absolute metric should be computed. For more details
+  # on the absolute metric please see: https://arxiv.org/abs/2209.10485
+
+# --- Rendering ---
+render: False # Renders a gif of the trained policy on one env.

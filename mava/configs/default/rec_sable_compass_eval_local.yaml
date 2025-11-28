@@ -1,0 +1,60 @@
+defaults:
+  - logger: logger
+  - arch: anakin
+  - system: sable/rec_sable
+  - network: rec_retention
+  - env: vector-connector  # [cleaner, connector, gigastep, lbf, rware, smax, mabrax, mpe]
+  - _self_
+
+hydra:
+  searchpath:
+    - file://mava/configs
+
+inference:
+  budget: 4
+  n_attempts: 4
+  n_envs: 8
+  env_seed: 0
+  evaluation_greedy: False
+  time_constraint: 3600
+  # search_strategy:
+  #   name: uniform_sampling
+  #   kwargs:
+  #     minval: -1.0
+  #     maxval: 1.0
+
+  search_strategy:
+    name: cmaes
+    kwargs:
+      num_states: 1 # Number of independent cmaes to use, high number will increase the probability of being stuck in local optima, but slowing the convergence
+      population_size: 4 # the number of latent to use, or the sample size of the distribution used
+      num_best: 2 # The number of candidates to update the cmaes states, good default is half of the population size
+      init_sigma: 1.0 # Step size for the covariance matrix adaptation
+      delay_eigen_decomposition: False
+
+# arch:
+#   num_eval_episodes: 32
+#   evaluation_greedy: False
+
+logger:
+  use_neptune: False
+  kwargs:
+    neptune_tag: ["sable", "compass", "uniform", "evaluation"]
+  checkpointing:
+    load_model: False
+    download_model: False
+    download_args:
+      neptune_run_name: "MAR-1448"
+    load_args:
+      checkpoint_uid: "20250131155052"
+
+network:
+  net_config:
+    embed_dim: 16
+    n_head: 1
+  memory_config:
+    timestep_chunk_size: ~ #2944 #75
+    decay_scaling_factor: 1
+
+system:
+  rollout_length: 10 #225

@@ -1,0 +1,51 @@
+defaults:
+  - logger: logger
+  - arch: anakin
+  - system: sable/rec_sable
+  - network: rec_retention
+  - env: vector-connector  # [cleaner, connector, gigastep, lbf, rware, smax, mabrax, mpe]
+  - _self_
+
+hydra:
+  searchpath:
+    - file://mava/configs
+
+inference:
+  budget: 6400
+  n_attempts: 32
+  n_envs: 128
+  env_seed: 0
+  evaluation_greedy: False
+  time_constraint: 3600
+
+  search_strategy:
+    name: cmaes
+    kwargs:
+      num_states: 1 # Number of independent cmaes to use, high number will increase the probability of being stuck in local optima, but slowing the convergence
+      population_size: ~ #32 # the number of latent to use, or the sample size of the distribution used
+      num_best: ~ #16 # The number of candidates to update the cmaes states, good default is half of the population size
+      init_sigma: 1.0 # Step size for the covariance matrix adaptation
+      delay_eigen_decomposition: False
+
+logger:
+  use_neptune: False
+  kwargs:
+    neptune_tag: ["sable", "compass", "cmaes", "evaluation"]
+  checkpointing:
+    load_model: True
+    download_model: True
+    download_args:
+      neptune_run_name: "MAR-3827"
+    load_args:
+      checkpoint_uid: "paper-compass-checkpoints"
+
+network:
+  net_config:
+    embed_dim: 128
+    n_head: 4
+  memory_config:
+    timestep_chunk_size: 75 #2944 #75
+    decay_scaling_factor: 0.8 #1
+
+system:
+  rollout_length: 225

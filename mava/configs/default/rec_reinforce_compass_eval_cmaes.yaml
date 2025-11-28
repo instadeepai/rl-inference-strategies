@@ -1,0 +1,28 @@
+defaults:
+  - logger: logger
+  - arch: anakin
+  - system: reinforce/rec_ireinforce
+  - network: rnn  # [rnn, rcnn]
+  - env: rware  # [cleaner, connector, gigastep, lbf, mabrax, matrax, rware, smax]
+  - _self_
+
+hydra:
+  searchpath:
+    - file://mava/configs
+
+inference:
+  budget: 32
+  n_attempts: 8
+  n_envs: 128
+  env_seed: 0
+  evaluation_greedy: False
+  time_constraint: 600
+
+  search_strategy:
+    name: cmaes
+    kwargs:
+      num_states: 1 # Number of independent cmaes to use, high number will increase the probability of being stuck in local optima, but slowing the convergence
+      population_size: ~ #32 # the number of latent to use, or the sample size of the distribution used
+      num_best: ~ #16 # The number of candidates to update the cmaes states, good default is half of the population size
+      init_sigma: 1.0 # Step size for the covariance matrix adaptation
+      delay_eigen_decomposition: False

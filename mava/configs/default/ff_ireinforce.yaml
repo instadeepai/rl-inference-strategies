@@ -1,0 +1,11 @@
+defaults:
+  - logger: logger
+  - arch: anakin
+  - system: reinforce/ff_ireinforce
+  - network: mlp  # [mlp, cnn]
+  - env: lbf  # [cleaner, connector, gigastep, lbf, mabrax, matrax, rware, smax]
+  - _self_
+
+hydra:
+  searchpath:
+    - file://mava/configs

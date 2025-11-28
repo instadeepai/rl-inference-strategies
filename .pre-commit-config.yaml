@@ -1,0 +1,63 @@
+default_stages: [ "pre-commit", "commit-msg", "pre-push" ]
+default_language_version:
+  python: python3
+
+exclude: '^(base_policy_hyperparameters|all_checkpoints)/'
+
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    # Ruff version.
+    rev: v0.7.1
+    hooks:
+      # Run the linter.
+      - id: ruff
+        types_or: [ python ]
+        args: [ --fix ]
+      # Run the formatter.
+      - id: ruff-format
+        types_or: [ python, pyi, jupyter ]
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: end-of-file-fixer
+        name: "End of file fixer"
+      - id: debug-statements
+        name: "Debug imports and breakpoints checker"
+      - id: requirements-txt-fixer
+        name: "Requirements txt fixer"
+      - id: mixed-line-ending
+        name: "Mixed line ending fixer"
+      - id: check-yaml
+        name: "Yaml checker"
+        args: [ '--unsafe' ]
+      - id: trailing-whitespace
+        name: "Trailing whitespace fixer"
+
+  - repo: local
+    hooks:
+      - id: mypy
+        name: "Static type checker"
+        entry: python -m mypy mava/
+        language: system
+        types: [ python ]
+        pass_filenames: false
+
+  - repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
+    rev: v9.18.0
+    hooks:
+      - id: commitlint
+        name: "Commit linter"
+        stages: [ commit-msg ]
+        additional_dependencies: [ '@commitlint/config-conventional' ]
+
+  - repo: https://github.com/Lucas-C/pre-commit-hooks
+    rev: v1.5.5
+    hooks:
+      - id: insert-license
+        name: "License inserter"
+        files: .*py$
+        args:
+          - --license-filepath=docs/license_header.txt
+          - --comment-style=#
+        exclude: .npy$  # Do not add license to .npy files (the standard binary file format in NumPy)
