@@ -1,6 +1,6 @@
 <p align="center">
     <a href="docs/images/all_tasks_30s.png">
-        <img src="docs/images/all_tasks_30s.png" alt="All tasks 30 Seconds" width="50%"/>
+        <img src="docs/images/all_tasks_30s.png" alt="All tasks 30 Seconds" width="90%"/>
     </a>
 </p>
 
