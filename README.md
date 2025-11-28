@@ -95,7 +95,7 @@ To run all online fine-tuning experiments, please run
 python experiment_launch_scripts/eval_finetuning.py
 ```
 
-## Citing 📚
+## 📚 Citing
 
 If you build on this work, please cite our [paper][paper]:
 
@@ -107,7 +107,7 @@ If you build on this work, please cite our [paper][paper]:
 }
 ```
 
-## Acknowledgements 🙏
+## 🙏 Acknowledgements
 
 This work was supported with Cloud TPUs from Google's [TPU Research Cloud](https://sites.research.google/trc/about/) (TRC) 🌤.
 
