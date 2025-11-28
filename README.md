@@ -5,7 +5,7 @@
 </p>
 
 <h2 align="center">
-    <p>Breaking the Performance Ceiling in Reinforcement Learning Requires Inference Strategies</p>
+    <p>Breaking the Performance Ceiling in Reinforcement Learning requires Inference Strategies</p>
 </h2>
 
 <div align="center">
@@ -100,10 +100,13 @@ python experiment_launch_scripts/eval_finetuning.py
 If you build on this work, please cite our [paper][paper]:
 
 ```bibtex
-@inproceedings{chalumeaubreaking,
-  title={Breaking the Performance Ceiling in Reinforcement Learning requires Inference Strategies},
-  author={Chalumeau, Felix and Rajaonarivonivelomanantsoa, Daniel and de Kock, Ruan John and Formanek, Juan Claude and Abramowitz, Sasha and Mahjoub, Omayma and Khlifi, Wiem and Du Toit, Simon Verster and Nessir, Louay Ben and Shabe, Refiloe and others},
-  booktitle={The Thirty-ninth Annual Conference on Neural Information Processing Systems}
+@inproceedings{
+    chalumeau2025breaking,
+    title={Breaking the Performance Ceiling in Reinforcement Learning requires Inference Strategies},
+    author={Felix Chalumeau and Daniel Rajaonarivonivelomanantsoa and Ruan John de Kock and Juan Claude Formanek and Sasha Abramowitz and Omayma Mahjoub and Wiem Khlifi and Simon Verster Du Toit and Louay Ben Nessir and Refiloe Shabe and Arnol Manuel Fokam and Siddarth Singh and Ulrich Armel Mbou Sob and Arnu Pretorius},
+    booktitle={The Thirty-ninth Annual Conference on Neural Information Processing Systems},
+    year={2025},
+    url={https://openreview.net/forum?id=RxkCwOKVKa}
 }
 ```
 
