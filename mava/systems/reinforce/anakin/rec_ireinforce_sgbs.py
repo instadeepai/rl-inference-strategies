@@ -182,9 +182,23 @@ def get_eval_fn(
                 action, actor_state = act_fn(
                     params, ts, act_key, actor_state, True
                 )  # always greedy simulation
-                env_state, ts = jax.vmap(env.step)(env_state, action)
 
-                cum_return += jnp.mean(ts.reward, axis=-1)
+                # The loop runs until every simulation has finished, so simulations that
+                # terminate early would otherwise keep stepping and keep accumulating
+                # reward. Hold them at their final state and stop adding to their return.
+                done = ts.last()
+                stepped_env_state, stepped_ts = jax.vmap(env.step)(env_state, action)
+                env_state, ts = jax.tree.map(
+                    lambda held, stepped: jnp.where(
+                        done.reshape(done.shape + (1,) * max(held.ndim - done.ndim, 0)),
+                        held,
+                        stepped,
+                    ),
+                    (env_state, ts),
+                    (stepped_env_state, stepped_ts),
+                )
+
+                cum_return += jnp.where(done, 0.0, jnp.mean(ts.reward, axis=-1))
 
                 return (env_state, ts, key, actor_state), cum_return
 
